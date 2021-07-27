@@ -8,3 +8,6 @@
     Added jquery/bootstrap/js static imports to project.
     Added sidebar, footer and header.
     Added forms to index.html.
+    
+ ### 0.2.1
+    Minor updates in styling.
