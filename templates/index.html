@@ -4,56 +4,121 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!--link rel="stylesheet" type="text/css" href="./style.css"-->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <!--script type="text/javascript" src="js/scripts.js"></script-->
+    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"-->
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script-->
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-3.6.0.slim.min.js"></script>
     <title>tyeGenerator</title>
 </head>
 <body>
-    <div class="container bg-light">
-        <div class="col-md-12 text-center">
-            <button onclick="generateTyeFile()" type="button" class="btn btn-primary" style="position: inherit; top: 300px;">Generate my tye.yml file.</button>
+
+    <nav class="navbar">
+        <div class="container-fluid text-center navigation">
+            <button type="button" id="sidebarCollapse" class="btn btn-dark">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+                <span>Toggle Sidebar</span>
+            </button>
+            <h1><a  href="index.html" class="">TyeGenerator</a></h1>
+        </div>
+    </nav>
+
+    <div class="wrapper">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Tyebar</h3>
+            </div>
+            <ul class="list-unstyled components">
+                <p>Heading</p>
+                <li class="active">
+                    <a href="index.html" data-toggle="collapse" aria-expanded="false">Generate Tye File</a>
+                </li>
+                <li>
+                    <a href="about.html">About</a>
+                </li>
+            </ul>
+        </nav>
+
+       
+       <div class="text-center">
+        
+       </div> 
+        
+        <!--div class="text-center">
+            <div class="centered">
+            </i><button onclick="generateTyeFile()" type="button" class="btn btn-primary"><i class="fa fa-download" aria-hidden="true"></i> Generate my tye.yml file.</button>
+            </div>
+        </div-->
+
+        <div class="centered">
+            <form action="/action_page.php">
+                <h2>Project Services</h2>
+                <ul>
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">Control point</label>
+                </ul>
+                <ul>
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">Devices</label>
+                </ul>
+                <ul>
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">Reports</label>
+                </ul>
+                <ul>
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">Video</label>
+                </ul>
+                <ul>
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">Archive</label>
+                </ul>
+                
+                <h2>Commercial Services</h2>
+                <ul>
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">MongoDB</label>
+                </ul>
+                <ul>
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">Redis</label>
+                </ul>
+                <ul>
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">Greylog</label>
+                </ul>
+                <ul>
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">Dapr</label>
+                </ul>
+                <ul>
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">SQL Server</label>
+                </ul>
+
+                <h2></h2>
+            
+                <div class="text-center">
+                    <input type="submit" value="Next" class="btn btn-dark form-container-button">
+                </div>
+            </form>
+        </div>
+        
+        <div id="content">
+
         </div>
     </div>
 
-    <script>
-        function download(filename, text) {
-            var element = document.createElement('a');
-            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-            element.setAttribute('download', filename);
+    <footer class="">
+        <div class="text-center p-3 navigation">
+            Footer
+        </div>
+    </footer>
 
-            element.style.display = 'none';
-            document.body.appendChild(element);
+    
+    <script src="/static/js/scripts.js"></script>
 
-            element.click();
-
-            document.body.removeChild(element);
-        }
-
-        function generateTyeFile(){
-            // TODO, hardcoded input
-        var output =`name: myapplication
-services:
-- name: backend
-  project: backend/backend.csproj
-  bindings:
-  - port: 7000
-- name: frontend
-  project: frontend/frontend.csproj
-  replicas: 2
-  bindings:
-  - port: 8000
-- name: worker
-  project: worker/worker.csproj
-- name: rabbit
-  image: rabbitmq:3-management
-  bindings:
-    - port: 5672
-      protocol: rabbitmq`;
-
-            download("tye.yaml", output);    
-        }
-    </script>
 </body>
 </html>
