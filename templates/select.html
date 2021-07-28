@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"-->
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script-->
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-3.6.0.slim.min.js"></script>
+    <title>tyeGenerator</title>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container-fluid text-center navigation">
+            <button type="button" id="sidebarCollapse" class="btn btn-dark">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+                <span>Toggle Sidebar</span>
+            </button>
+            <h1><a  href="{{ url_for('index')}}">TyeGenerator</a></h1>
+        </div>
+    </nav>
+
+    <div class="wrapper">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3 class="text-center">Tyebar</h3>
+            </div>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="{{ url_for('index')}}" data-toggle="collapse" aria-expanded="false"><i class="fa fa-file" aria-hidden="true"></i>  Generate Tye File </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('about')}}"> <i class="fa fa-info-circle" aria-hidden="true"></i>  About</a>
+                </li>
+            </ul>
+        </nav>
+
+
+        <div class="centered tabs">
+                <label for="configname">Configuration name</label>
+                <input type="text" id="configname" name="configname">
+                <br><br>
+                <!-- Tab links -->
+                <div class="tab">
+                    {% set check = 'true' %}
+                    {% for elem in value %}
+                        {% if check == 'true'%}
+                            <button class="tablinks" onclick="openTab(event, '{{ elem }}')" id="defaultOpen">{{ elem }} </button>
+                            {% set check = 'false' %}
+                        {% else %}
+                            <button class="tablinks" onclick="openTab(event, '{{ elem }}')">{{ elem }} </button>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+            <form action="">
+                <!-- Tab content -->
+                {% for elem in value %}
+                    <div id="{{ elem }}" class="tabcontent">
+                        <br><br>
+                        <ul>
+                            <label for="cname">Name</label>
+                            <input type="text" id="{{ elem ~ 'name'}}" name="{{ elem ~ 'form'}}">
+                        </ul>
+                        <ul>
+                            <label for="cname">Project</label>
+                            <input type="text" id="{{ elem ~ 'project'}}" name="{{ elem ~ 'form'}}">
+                        </ul>
+                        <ul>
+                            <label for="cname">Image</label>
+                            <input type="text" id="{{ elem ~ 'image'}}" name="{{ elem ~ 'form'}}">
+                        </ul>
+                        <ul>
+                            <label for="cname">Port</label>
+                            <input type="text" id="{{ elem ~ 'port'}}" name="{{ elem ~ 'form'}}">
+                        </ul>
+                        <ul>
+                            <label for="cname">Protocol</label>
+                            <input type="text" id="{{ elem ~ 'protocol'}}" name="{{ elem ~ 'form'}}">
+                        </ul>
+
+                    </div>
+                {% endfor %}
+                
+                <br><br>
+                <div >
+                    <button class="btn btn-dark" id="back-button"><a href="{{ url_for('index')}}">Back</a></button>
+                    <input type="submit" value="Next" class="btn btn-dark" id="next-button">
+                </div>
+            </form>
+        </div>
+
+
+        <div id="content">
+        </div>
+    </div>
+
+    <footer class="navigation">
+        <h2 class="text-center">
+            <a href="https://github.com/Darex20">My Github Page <i class="fa fa-github fa-4"></i></a></h2>
+    </footer>
+
+    
+    <script src="/static/js/select.js"></script>
+
+</body>
+</html>

@@ -28,42 +28,43 @@
     <div class="wrapper">
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>Tyebar</h3>
+                <h3 class="text-center">Tyebar</h3>
             </div>
             <ul class="list-unstyled components">
-                <p>Heading</p>
                 <li class="active">
-                    <a href="{{ url_for('index')}}" data-toggle="collapse" aria-expanded="false">Generate Tye File</a>
+                    <a href="{{ url_for('index')}}" data-toggle="collapse" aria-expanded="false"><i class="fa fa-file" aria-hidden="true"></i>  Generate Tye File </a>
                 </li>
                 <li>
-                    <a href="{{ url_for('about')}}">About</a>
+                    <a href="{{ url_for('about')}}"> <i class="fa fa-info-circle" aria-hidden="true"></i>  About</a>
                 </li>
             </ul>
         </nav>
 
-       
-       <div class="text-center">
-        
-       </div> 
-        
-        <!--div class="text-center">
-            <div class="centered">
-            </i><button onclick="generateTyeFile()" type="button" class="btn btn-primary"><i class="fa fa-download" aria-hidden="true"></i> Generate my tye.yml file.</button>
-            </div>
-        </div-->
+        <div class="centered about-text">
+            <p>This is a simple project made for easier tye.yaml file generation. </p>
+            <p>More about tye.yaml scheme.  <a href="https://github.com/dotnet/tye/blob/main/docs/reference/schema.md#example"><i class="fa fa-external-link" aria-hidden="true"></i></a></p>
 
+            <h2>README.md</h2>
+            <div id="readme" class="markdown embed"></div>
+        </div>
         
+
         <div id="content">
-
         </div>
     </div>
 
-    <footer class="">
-        <div class="text-center p-3 navigation">
-        </div>
+    <footer class="navigation">
+        <h2 class="text-center">
+            <a href="https://github.com/Darex20">My Github Page <i class="fa fa-github fa-4"></i></a></h2>
     </footer>
     
-    <script src="/static/js/scripts.js"></script>
+    <script src="/static/js/about.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <script>
+        document.getElementById('readme').innerHTML =
+        marked('# Marked in the browser\n\nRendered by **marked**.');
+    </script>
 
 </body>
 </html>
