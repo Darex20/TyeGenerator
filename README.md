@@ -11,3 +11,7 @@
     
  ### 0.2.1
     Minor updates in styling.
+    
+ ### 0.2.2
+    Added select.html.
+    Added forms and tabs to select.html
