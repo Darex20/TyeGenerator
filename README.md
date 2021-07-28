@@ -15,3 +15,6 @@
  ### 0.2.2
     Added select.html.
     Added forms and tabs to select.html
+    
+ ### 0.2.3
+    Fixed select.html and forms are now working
