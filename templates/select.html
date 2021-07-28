@@ -42,7 +42,7 @@
 
 
         <div class="centered tabs">
-                <label for="configname">Configuration name</label>
+                <label for="configname">Configuration name </label>
                 <input type="text" id="configname" name="configname">
                 <br><br>
                 <!-- Tab links -->
@@ -58,30 +58,30 @@
                     {% endfor %}
                 </div>
 
-            <form action="">
+            <form action="{{ url_for('select')}}" method="POST">
                 <!-- Tab content -->
                 {% for elem in value %}
                     <div id="{{ elem }}" class="tabcontent">
                         <br><br>
                         <ul>
                             <label for="cname">Name</label>
-                            <input type="text" id="{{ elem ~ 'name'}}" name="{{ elem ~ 'form'}}">
+                            <input type="text" id="{{ elem ~ 'name'}}" name="{{ elem ~ 'name'}}">
                         </ul>
                         <ul>
                             <label for="cname">Project</label>
-                            <input type="text" id="{{ elem ~ 'project'}}" name="{{ elem ~ 'form'}}">
+                            <input type="text" id="{{ elem ~ 'project'}}" name="{{ elem ~ 'project'}}">
                         </ul>
                         <ul>
                             <label for="cname">Image</label>
-                            <input type="text" id="{{ elem ~ 'image'}}" name="{{ elem ~ 'form'}}">
+                            <input type="text" id="{{ elem ~ 'image' }}" name="{{ elem ~ 'image'}}">
                         </ul>
                         <ul>
                             <label for="cname">Port</label>
-                            <input type="text" id="{{ elem ~ 'port'}}" name="{{ elem ~ 'form'}}">
+                            <input type="text" id="{{ elem ~ 'port' }}" name="{{ elem ~ 'port'}}">
                         </ul>
                         <ul>
                             <label for="cname">Protocol</label>
-                            <input type="text" id="{{ elem ~ 'protocol'}}" name="{{ elem ~ 'form'}}">
+                            <input type="text" id="{{ elem ~ 'protocol' }}" name="{{ elem ~ 'protocol' }}">
                         </ul>
 
                     </div>
