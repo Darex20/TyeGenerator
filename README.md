@@ -18,3 +18,8 @@
     
 ### v0.2.3
    * Fixed select.html and forms are now working  
+
+## v0.3.0
+   * Most of functionality and layout is done.  
+   * Finished about.html, added embeded README.md to it.  
+   * Preview and Generate functionalities are still in progress.  
