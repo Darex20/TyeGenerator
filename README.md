@@ -23,3 +23,6 @@
    * Most of functionality and layout is done.  
    * Finished about.html, added embeded README.md to it.  
    * Preview and Generate functionalities are still in progress.  
+
+### v0.3.1
+   * Updated about.html (added few links and my github icon)
