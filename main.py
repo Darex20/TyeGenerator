@@ -1,7 +1,7 @@
-import re
 from flask import Flask, request
 from flask_wtf import FlaskForm
 import flask
+import markdown
 
 app = Flask(__name__)
 
@@ -15,7 +15,17 @@ def index():
 
 @app.route('/about')
 def about():
-    return flask.render_template('about.html')
+    # static file from project root
+    with open('README.md', 'r') as f:
+        text = f.read()
+        html = markdown.markdown(text)
+        
+    # getting README.md file directly from my github site
+    """with open(file, 'r') as f:
+        text=f.read()
+        html = markdown.markdown(text)"""
+
+    return flask.render_template('about.html', embed=html)
 
 @app.route('/select', methods=['GET', 'POST'])
 def select():

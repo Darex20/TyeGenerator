@@ -15,13 +15,14 @@
 </head>
 <body>
 
+    <div id="page-container">
     <nav class="navbar">
         <div class="container-fluid text-center navigation">
             <button type="button" id="sidebarCollapse" class="btn btn-dark">
                 <i class="fa fa-bars" aria-hidden="true"></i>
                 <span>Toggle Sidebar</span>
             </button>
-            <h1><a  href="{{ url_for('index')}}" class="">TyeGenerator</a></h1>
+            <h1 class="head"><a  href="{{ url_for('index')}}">TyeGenerator</a></h1>
         </div>
     </nav>
 
@@ -31,40 +32,42 @@
                 <h3 class="text-center">Tyebar</h3>
             </div>
             <ul class="list-unstyled components">
-                <li class="active">
+                <li>
                     <a href="{{ url_for('index')}}" data-toggle="collapse" aria-expanded="false"><i class="fa fa-file" aria-hidden="true"></i>  Generate Tye File </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="{{ url_for('about')}}"> <i class="fa fa-info-circle" aria-hidden="true"></i>  About</a>
                 </li>
             </ul>
         </nav>
 
-        <div class="centered about-text">
+        <div class="centered-about">
+            <br><br><br>
             <p>This is a simple project made for easier tye.yaml file generation. </p>
             <p>More about tye.yaml scheme.  <a href="https://github.com/dotnet/tye/blob/main/docs/reference/schema.md#example"><i class="fa fa-external-link" aria-hidden="true"></i></a></p>
 
-            <h2>README.md</h2>
-            <div id="readme" class="markdown embed"></div>
+            <br>
+            <h2>Embeded README.md file from my github.</h2>
+            <br>
+            <div id="readme" class="markdown embed">
+                <!--object data="README.html" type="text/html"></object-->
+                {{ embed | safe}}
+            </div>
+            <br><br><br>
         </div>
-        
 
         <div id="content">
         </div>
-    </div>
+    </div>    
 
-    <footer class="navigation">
-        <h2 class="text-center">
-            <a href="https://github.com/Darex20">My Github Page <i class="fa fa-github fa-4"></i></a></h2>
-    </footer>
+        <footer id="footer" class="navigation foot">
+            <h2 class="text-center">
+                <a href="https://github.com/Darex20">My Github Page <i class="fa fa-github fa-4"></i></a></h2>
+        </footer>
+    </div>
     
     <script src="/static/js/about.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-    <script>
-        document.getElementById('readme').innerHTML =
-        marked('# Marked in the browser\n\nRendered by **marked**.');
-    </script>
 
 </body>
 </html>

@@ -1,10 +1,16 @@
 $(document).ready(function () {
-
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
     });
-
 });
+
+
+/*
+
+var readme = fs.readFileSync("../../README.md", "utf-8");
+var markdownReadMe = marked(readme);
+
+fs.writeFileSync("../../README.html", markdownReadMe);
 
 document.body.style.display = "none"; // Hide the page until it's finished rendering.
 
@@ -24,4 +30,4 @@ for (var i = 0; i < md_tags.length; i++) { // Iterate through all the tags, and 
 
 document.body.style.display = ""; // Show the rendered page.
 
-
+*/

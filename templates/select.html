@@ -21,7 +21,7 @@
                 <i class="fa fa-bars" aria-hidden="true"></i>
                 <span>Toggle Sidebar</span>
             </button>
-            <h1><a  href="{{ url_for('index')}}">TyeGenerator</a></h1>
+            <h1 class="head"><a  href="{{ url_for('index')}}">TyeGenerator</a></h1>
         </div>
     </nav>
 
@@ -42,8 +42,7 @@
 
 
         <div class="centered tabs">
-                <label for="configname">Configuration name </label>
-                <input type="text" id="configname" name="configname">
+                
                 <br><br>
                 <!-- Tab links -->
                 <div class="tab">
@@ -62,7 +61,7 @@
                 <!-- Tab content -->
                 {% for elem in value %}
                     <div id="{{ elem }}" class="tabcontent">
-                        <br><br>
+                        <br><br><br>
                         <ul>
                             <label for="cname">Name</label>
                             <input type="text" id="{{ elem ~ 'name'}}" name="{{ elem ~ 'name'}}">
@@ -86,13 +85,33 @@
 
                     </div>
                 {% endfor %}
+
+                <br><br>
+                <label for="configname">Configuration name</label>
+                <input type="text" id="configname" name="configname">
+                
+                <br><br><br>
+
+                <div>
+                    <input type="submit" onclick="showPreview()" value="Show Preview" class="btn btn-dark" id="preview-button">
+                </div>
                 
                 <br><br>
-                <div >
-                    <button class="btn btn-dark" id="back-button"><a href="{{ url_for('index')}}">Back</a></button>
-                    <input type="submit" value="Next" class="btn btn-dark" id="next-button">
+                <div>
+                    <a href="{{ url_for('index')}}"><button class="btn btn-dark" id="back-button">Back</a></button>
+                    <div class="text-center">
+                        <div>
+                        </i><button id="generate-button" onclick="generateTyeFile()" type="button" class="btn btn-dark"><i class="fa fa-download" aria-hidden="true"></i> Generate my tye.yml file.</button>
+                        </div>
+                    </div>
                 </div>
             </form>
+        </div>
+
+        
+        <div id="preview">
+            <br><br><br>
+            <h1>Hello</h1>
         </div>
 
 
@@ -100,7 +119,7 @@
         </div>
     </div>
 
-    <footer class="navigation">
+    <footer class="navigation foot">
         <h2 class="text-center">
             <a href="https://github.com/Darex20">My Github Page <i class="fa fa-github fa-4"></i></a></h2>
     </footer>
