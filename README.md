@@ -26,3 +26,7 @@
 
 ### v0.3.1
    * Updated about.html (added few links and my github icon)
+
+### v0.3.2
+   * Added functionalities to create and generate a file which are working now
+   * Edited style, changed font, added new background color
