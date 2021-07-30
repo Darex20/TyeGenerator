@@ -63,8 +63,8 @@
                     <div id="{{ elem }}" class="tabcontent">
                         <br><br><br>
                         <ul>
-                            <label for="cname">Name</label>
-                            <input type="text" id="{{ elem ~ 'name'}}" name="{{ elem ~ 'name'}}">
+                            <label for="cname">Name <mark class="red">(required)</mark></label>
+                            <input type="text" id="{{ elem ~ 'name'}}" name="{{ elem ~ 'name'}}" required>
                         </ul>
                         <ul>
                             <label for="cname">Project</label>
@@ -87,22 +87,15 @@
                 {% endfor %}
 
                 <br><br>
-                <label for="configname">Configuration name</label>
-                <input type="text" id="configname" name="configname">
+                <label for="configname" id="configname" >Configuration name <mark class="red">(required)</mark></label>
+                <input type="text" id="configname-label" name="configname" required>
                 
                 <br><br><br>
 
                 <div>
-                    <input type="submit" onclick="showPreview()" value="Show Preview" class="btn btn-dark" id="preview-button">
-                </div>
-                
-                <br><br>
-                <div>
-                    <a href="{{ url_for('index')}}"><button class="btn btn-dark" id="back-button">Back</a></button>
+                    <a href="{{ url_for('index')}}"><button class="btn btn-dark" id="back-button" >Back</a></button>
                     <div class="text-center">
-                        <div>
-                        </i><button id="generate-button" onclick="generateTyeFile()" type="button" class="btn btn-dark"><i class="fa fa-download" aria-hidden="true"></i> Generate my tye.yml file.</button>
-                        </div>
+                        <input type="submit" value="Show Preview" class="btn btn-dark" id="preview-button">
                     </div>
                 </div>
             </form>

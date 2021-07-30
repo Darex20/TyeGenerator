@@ -29,9 +29,40 @@ def about():
 
 @app.route('/select', methods=['GET', 'POST'])
 def select():
-    str = request.form.get("devicesname") + request.form.get("devicesproject") + request.form.get("devicesimage")
-    return str
-    #return flask.render_template('preview.html', value=request)
+    services = ["control_point", "devices", "reports", "video", "archive", "mongodb", "redis", "greylog", "dapr", "sqlserver"]
+    fields = ["name", "project", "image", "port", "protocol"]
+    dict = {}
+    for service in services:
+        currentDataDict = {}
+        for field in fields:
+            str = service + field
+            str = request.form.get(str)
+            if(str != None and str != ""):
+                currentDataDict[field] = str
+        if currentDataDict != {}:
+            dict[service] = currentDataDict
+    
+    configName = request.form.get("configname")
+    outputFile = "name: " + configName + "\n" + "services:"
+    
+    for key in dict:
+        check = True
+        for value in dict[key]:
+            if value == "name":
+                outputFile = outputFile + "\n- " + value + ": " + dict[key][value]
+            elif (value == "port" or value == "protocol") and check:
+                outputFile = outputFile + "\n  bindings:\n  - " + value + ": " + dict[key][value]
+                check = False    
+            elif not check and value == "protocol":
+                outputFile =  outputFile + "\n    " + value + ": " + dict[key][value]
+            else:
+                outputFile = outputFile + "\n  " + value + ": " + dict[key][value]
+
+    print(outputFile)
+    html = "<p>" + outputFile.replace("\n", "<br>") + "</p>"
+
+    # str = request.form.get("devicesname") + request.form.get("devicesproject") + request.form.get("devicesimage")
+    return flask.render_template('preview.html', outputFile=outputFile, configName=configName, html=html)
 
 """@app.route('/handle_data', methods=['GET', 'POST'])
 def handle_path():

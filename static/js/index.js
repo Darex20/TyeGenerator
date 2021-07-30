@@ -20,7 +20,7 @@ function download(filename, text) {
     document.body.removeChild(element);
 }
 
-function generateTyeFile(){
+/* function generateTyeFile(){
     // TODO, hardcoded input
 var output =`name: myapplication
 services:
@@ -43,4 +43,4 @@ protocol: rabbitmq`;
 
     download("tye.yaml", output);    
 }
-
+*/
