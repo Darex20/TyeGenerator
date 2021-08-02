@@ -1,6 +1,11 @@
 # TyeGenerator
  Simple web app that generates tye file.  
  
+### v0.3.3
+   * Added mongoDB database to the project that now holds services.
+   * Updated style.css.
+   * Reformulated and removed some words.
+   
 ### v0.3.2
    * Added functionalities to create and generate a file which are working now
    * Edited style, changed font, added new background color  
