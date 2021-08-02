@@ -40,78 +40,41 @@
             </ul>
         </nav>
 
-       
-        
-        <!--div class="text-center">
-            <div class="centered">
-            </i><button onclick="generateTyeFile()" type="button" class="btn btn-primary"><i class="fa fa-download" aria-hidden="true"></i> Generate my tye.yml file.</button>
-            </div>
-        </div-->
-
         <div class="centered generate-text">
-
             <form action="{{ url_for('index') }}" method="post">
                 <h2>Project Services</h2>
                 <br>
-                <ul>
-                    <input class="form-check-input" type="checkbox" value="control_point" id="flexCheckDefault" name="services">
-                    <label class="form-check-label" for="flexCheckDefault">Control point</label>
-                </ul>
-                <ul>
-                    <input class="form-check-input" type="checkbox" value="devices" id="flexCheckDefault" name="services">
-                    <label class="form-check-label" for="flexCheckDefault">Devices</label>
-                </ul>
-                <ul>
-                    <input class="form-check-input" type="checkbox" value="reports" id="flexCheckDefault" name="services">
-                    <label class="form-check-label" for="flexCheckDefault">Reports</label>
-                </ul>
-                <ul>
-                    <input class="form-check-input" type="checkbox" value="video" id="flexCheckDefault" name="services">
-                    <label class="form-check-label" for="flexCheckDefault">Video</label>
-                </ul>
-                <ul>
-                    <input class="form-check-input" type="checkbox" value="archive" id="flexCheckDefault" name="services">
-                    <label class="form-check-label" for="flexCheckDefault">Archive</label>
-                </ul>
-                <br>
+                {% for elem in services %}
+                    {% if elem['type'] == 'project' %}
+                        <ul>
+                            <input class="form-check-input" type="checkbox" value="{{ elem['name'] }}" name="services">
+                            <label class="form-check-label" for="flexCheckDefault" >{{ elem['service'] }}</label>
+                        </ul>
+                    {% endif %}    
+                {% endfor %}
 
+                <br>
                 <h2>Commercial Services</h2>
                 <br>
-                <ul>
-                    <input class="form-check-input" type="checkbox" value="mongodb" id="flexCheckDefault" name="services">
-                    <label class="form-check-label" for="flexCheckDefault">MongoDB</label>
-                </ul>
-                <ul>
-                    <input class="form-check-input" type="checkbox" value="redis" id="flexCheckDefault" name="services">
-                    <label class="form-check-label" for="flexCheckDefault">Redis</label>
-                </ul>
-                <ul>
-                    <input class="form-check-input" type="checkbox" value="greylog" id="flexCheckDefault" name="services">
-                    <label class="form-check-label" for="flexCheckDefault">Greylog</label>
-                </ul>
-                <ul>
-                    <input class="form-check-input" type="checkbox" value="dapr" id="flexCheckDefault" name="services">
-                    <label class="form-check-label" for="flexCheckDefault">Dapr</label>
-                </ul>
-                <ul>
-                    <input class="form-check-input" type="checkbox" value="sql" id="flexCheckDefault" name="services">
-                    <label class="form-check-label" for="flexCheckDefault">SQL Server</label>
-                </ul>
+
+                {% for elem in services.rewind() %}
+                    {% if elem['type'] == 'commercial' %}
+                        <ul>
+                            <input class="form-check-input" type="checkbox" value="{{ elem['name'] }}" name="services">
+                            <label class="form-check-label" for="flexCheckDefault" >{{ elem['service'] }}</label>
+                        </ul>
+                    {% endif %}
+                {% endfor %}
 
                 <br><br>
-            
                 <div class="text-center">
-                    <input type="submit" value="Next" class="btn btn-dark form-container-button">
+                    <input type="submit" value="Next" class="btn btn-dark form-container-button" >
                 </div>
             </form>
         </div>
-        
-        <div id="content">
-
-        </div>
     </div>
 
-    <footer class="navigation foot">
+    <footer class="navigation foot footer">
         <h2 class="text-center">
             <a href="https://github.com/Darex20">My Github Page <i class="fa fa-github fa-4"></i></a></h2>
     </footer>

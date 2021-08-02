@@ -17,16 +17,6 @@
     position: relative;
 }
 
-#sidebar {
-    min-width: 250px;
-    max-width: 250px;
-    min-height: 100vh;
-}
-
-#sidebar.active {
-    margin-left: -250px;
-}
-
 a[data-toggle="collapse"] {
     position: relative;
 }
@@ -67,10 +57,16 @@ a, a:hover, a:focus {
 }
 
 #sidebar {
-    /* don't forget to add all the previously mentioned styles here too */
+    min-width: 250px;
+    max-width: 250px;
+    min-height: 100vh;
     background: #7386D5;
     color: #fff;
     transition: all 0.3s;
+}
+
+#sidebar.active {
+    margin-left: -250px;
 }
 
 #sidebar .sidebar-header {
@@ -189,12 +185,12 @@ label {
     top: 5rem;
 }
 
-#next-button{
+.right-button{
     float: right;
     width: 10em;
 }
 
-#back-button{
+.left-button{
     float: left;
     width: 6em;
 }
@@ -210,14 +206,14 @@ label {
     padding-bottom: 2rem;
 }
 
-#footer {
+.footer {
     position: relative;
     bottom: 0;
     width: 100%;
     display:inline block;
   }
  
-  #page-container {
+  .page-container {
     position: relative;
     min-height: 100%;
   }  
@@ -234,8 +230,6 @@ label {
     float: right;
 }
 
-  
-  
   #generate-button{
       float: right;
   }

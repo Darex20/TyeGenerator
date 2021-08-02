@@ -1,0 +1,4 @@
+{
+    "SECRET_KEY": "DZ?gx3|:A^#}IRn$)JTt>qKfnk4>fn",
+    "connection_url": "mongodb://localhost:27017/"
+}

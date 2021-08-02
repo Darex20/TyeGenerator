@@ -4,6 +4,12 @@ $(document).ready(function () {
         $('#sidebar').toggleClass('active');
     });
 
+    $("form").submit(function(){
+        if ($('input:checkbox').filter(':checked').length < 1){
+               alert("Please Check at least one service");
+        return false;
+        }
+    });
 });
 
 

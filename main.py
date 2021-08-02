@@ -2,16 +2,30 @@ from flask import Flask, request
 from flask_wtf import FlaskForm
 import flask
 import markdown
+import json
+import pymongo
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = 'DZ?gx3|:A^#}IRn$)JTt>qKfnk4>fn'
+with open('./config.json') as f:
+    config = json.load(f)
+
+app.config.update(config)
+client = pymongo.MongoClient(config["connection_url"])
+
+database_name="tye_generator"
+db=client[database_name]
+
+collection_name="services"
+services=db[collection_name]
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         return flask.render_template('select.html', value=request.form.getlist('services'))
-    return flask.render_template('index.html')
+    
+    services = db.services.find()
+    return flask.render_template('index.html', services=services)
 
 @app.route('/about')
 def about():
@@ -19,28 +33,24 @@ def about():
     with open('README.md', 'r') as f:
         text = f.read()
         html = markdown.markdown(text)
-        
-    # getting README.md file directly from my github site
-    """with open(file, 'r') as f:
-        text=f.read()
-        html = markdown.markdown(text)"""
-
     return flask.render_template('about.html', embed=html)
 
 @app.route('/select', methods=['GET', 'POST'])
 def select():
-    services = ["control_point", "devices", "reports", "video", "archive", "mongodb", "redis", "greylog", "dapr", "sqlserver"]
-    fields = ["name", "project", "image", "port", "protocol"]
+    services = db.services.find()
     dict = {}
     for service in services:
+        print(service)
         currentDataDict = {}
-        for field in fields:
-            str = service + field
-            str = request.form.get(str)
-            if(str != None and str != ""):
-                currentDataDict[field] = str
+        for field in service:
+            print(field)
+            value = service[field]
+            value = request.form.get(value)
+            if(value != None and value != ""):
+                currentDataDict[field] = value
         if currentDataDict != {}:
-            dict[service] = currentDataDict
+            dict[service["service"]] = currentDataDict
+            print(currentDataDict)
     
     configName = request.form.get("configname")
     outputFile = "name: " + configName + "\n" + "services:"
@@ -62,10 +72,8 @@ def select():
     html = "<p>" + outputFile.replace("\n", "<br>") + "</p>"
 
     # str = request.form.get("devicesname") + request.form.get("devicesproject") + request.form.get("devicesimage")
-    return flask.render_template('preview.html', outputFile=outputFile, configName=configName, html=html)
+    return flask.render_template('preview.html', outputFile=outputFile, configName=configName, html=html, valueDict=dict)
 
-"""@app.route('/handle_data', methods=['GET', 'POST'])
-def handle_path():
-    if request.method == 'POST':
-        return "Hello"
-    print(request.form.getlist('project_services'))"""
+
+"""@app.route('/preview', methods=['GET', 'POST'])
+def preview():"""

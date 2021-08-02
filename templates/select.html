@@ -64,23 +64,23 @@
                         <br><br><br>
                         <ul>
                             <label for="cname">Name <mark class="red">(required)</mark></label>
-                            <input type="text" id="{{ elem ~ 'name'}}" name="{{ elem ~ 'name'}}" required>
+                            <input type="text" id="{{ elem ~ '_name'}}" name="{{ elem ~ 'name'}}" required>
                         </ul>
                         <ul>
                             <label for="cname">Project</label>
-                            <input type="text" id="{{ elem ~ 'project'}}" name="{{ elem ~ 'project'}}">
+                            <input type="text" id="{{ elem ~ '_project'}}" name="{{ elem ~ '_project'}}">
                         </ul>
                         <ul>
                             <label for="cname">Image</label>
-                            <input type="text" id="{{ elem ~ 'image' }}" name="{{ elem ~ 'image'}}">
+                            <input type="text" id="{{ elem ~ '_image' }}" name="{{ elem ~ '_image'}}">
                         </ul>
                         <ul>
                             <label for="cname">Port</label>
-                            <input type="text" id="{{ elem ~ 'port' }}" name="{{ elem ~ 'port'}}">
+                            <input type="text" id="{{ elem ~ '_port' }}" name="{{ elem ~ '_port'}}">
                         </ul>
                         <ul>
                             <label for="cname">Protocol</label>
-                            <input type="text" id="{{ elem ~ 'protocol' }}" name="{{ elem ~ 'protocol' }}">
+                            <input type="text" id="{{ elem ~ '_protocol' }}" name="{{ elem ~ '_protocol' }}">
                         </ul>
 
                     </div>
@@ -93,9 +93,9 @@
                 <br><br><br>
 
                 <div>
-                    <a href="{{ url_for('index')}}"><button class="btn btn-dark" id="back-button" >Back</a></button>
+                    <a href="{{ url_for('index')}}"><button class="btn btn-dark left-button">Back</a></button>
                     <div class="text-center">
-                        <input type="submit" value="Show Preview" class="btn btn-dark" id="preview-button">
+                        <input type="submit" value="Show Preview" class="btn btn-dark right-button">
                     </div>
                 </div>
             </form>
@@ -108,11 +108,9 @@
         </div>
 
 
-        <div id="content">
-        </div>
     </div>
 
-    <footer class="navigation foot">
+    <footer class="navigation foot footer">
         <h2 class="text-center">
             <a href="https://github.com/Darex20">My Github Page <i class="fa fa-github fa-4"></i></a></h2>
     </footer>

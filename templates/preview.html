@@ -15,55 +15,57 @@
 </head>
 <body>
 
-    <div id="page-container">
-    <nav class="navbar">
-        <div class="container-fluid text-center navigation">
-            <button type="button" id="sidebarCollapse" class="btn btn-dark">
-                <i class="fa fa-bars" aria-hidden="true"></i>
-                <span>Toggle Sidebar</span>
-            </button>
-            <h1 class="head"><a  href="{{ url_for('index')}}">TyeGenerator</a></h1>
-        </div>
-    </nav>
-
-    <div class="wrapper">
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3 class="text-center">Tyebar</h3>
+    <div class="page-container">
+        <nav class="navbar">
+            <div class="container-fluid text-center navigation">
+                <button type="button" id="sidebarCollapse" class="btn btn-dark">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                    <span>Toggle Sidebar</span>
+                </button>
+                <h1 class="head"><a  href="{{ url_for('index')}}">TyeGenerator</a></h1>
             </div>
-            <ul class="list-unstyled components">
-                <li class="active">
-                    <a href="{{ url_for('index')}}"  data-toggle="collapse" aria-expanded="false"><i class="fa fa-file" aria-hidden="true"></i>  Generate Tye File </a>
-                </li>
-                <li>
-                    <a href="{{ url_for('about')}}"> <i class="fa fa-info-circle" aria-hidden="true"></i>  About</a>
-                </li>
-            </ul>
         </nav>
 
-
-        <div class="centered-about">
-                <br><br>
-                <h2>Preview</h2>
-                <br><br>
-                <div id="preview" class="embed">
-                    {{ html | safe}}
+        <div class="wrapper">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <h3 class="text-center">Tyebar</h3>
                 </div>
-                <br><br>
-                <a href="{{ url_for('index')}}"><button class="btn btn-dark" id="back-button">Back</a></button>
-                <div id="output" style="display: none;">
-                    {{ outputFile | safe}}
-                </div>
-                <button id="generate-button" onclick="download('{{ configName }}')" type="button" class="btn btn-dark">
-                    <i class="fa fa-download" aria-hidden="true"></i> Generate my file.</button>
-        </div>
+                <ul class="list-unstyled components">
+                    <li class="active">
+                        <a href="{{ url_for('index')}}"  data-toggle="collapse" aria-expanded="false"><i class="fa fa-file" aria-hidden="true"></i>  Generate Tye File </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('about')}}"> <i class="fa fa-info-circle" aria-hidden="true"></i>  About</a>
+                    </li>
+                </ul>
+            </nav>
 
-    </div>    
+            <div class="centered-about">
+                    <br><br>
+                    <h2>Preview</h2>
+                    <br><br>
+                    <div id="preview" class="embed">
+                        {{ html | safe }}
+                    </div>
+                    <br><br>
+                    <a href="{{ url_for('index')}}"><button class="btn btn-dark left-button">Back</a></button>
+                    <div id="output" style="display: none;">
+                        {{ outputFile | safe }}
+                    </div>
+                    <button onclick="download('{{ configName }}')" type="button" class="btn btn-dark right-button">
+                        <i class="fa fa-download" aria-hidden="true"></i> Generate my file.</button>
+            </div>
 
-        <footer id="footer" class="navigation foot">
+            <br><br>
+
+        </div>    
+
+        <footer class="navigation foot footer">
             <h2 class="text-center">
                 <a href="https://github.com/Darex20">My Github Page <i class="fa fa-github fa-4"></i></a></h2>
         </footer>
+
     </div>
     
     <script type="text/javascript" src="/static/js/preview.js"></script>
