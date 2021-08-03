@@ -4,6 +4,10 @@ $(document).ready(function () {
     });
 });
 
+function goBack(){
+    history.back();
+}
+
 
 function download(filename) {
     var text = document.getElementById("output").textContent.trim()

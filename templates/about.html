@@ -1,73 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"-->
-    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-    <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!--script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script-->
-    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/static/js/jquery-3.6.0.slim.min.js"></script>
-    <title>tyeGenerator</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% set active_item = 'about' %}
 
-    <div class="page-container">
-        <nav class="navbar">
-            <div class="container-fluid text-center navigation">
-                <button type="button" id="sidebarCollapse" class="btn btn-dark">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
-                    <span>Toggle Sidebar</span>
-                </button>
-                <h1 class="head"><a  href="{{ url_for('index')}}">TyeGenerator</a></h1>
-            </div>
-        </nav>
-
-        <div class="wrapper">
-            <nav id="sidebar">
-                <div class="sidebar-header">
-                    <h3 class="text-center">Tyebar</h3>
-                </div>
-                <ul class="list-unstyled components">
-                    <li>
-                        <a href="{{ url_for('index')}}" data-toggle="collapse" aria-expanded="false"><i class="fa fa-file" aria-hidden="true"></i>  Generate Tye File </a>
-                    </li>
-                    <li class="active">
-                        <a href="{{ url_for('about')}}"> <i class="fa fa-info-circle" aria-hidden="true"></i>  About</a>
-                    </li>
-                </ul>
-            </nav>
-
-            <div class="centered-about">
-                <br><br>
-                <h1>About the project <a href="https://github.com/Darex20"><img id="github-icon" src="https://avatars.githubusercontent.com/u/79168824?v=4" alt="Could not load github icon"></a></h1>
-                
-                <br>
-                <p>This is a simple project made for easier tye.yaml file generation. <br>
-                    <a href="https://github.com/Darex20/TyeGenerator">This projects github source code. <i class="fa fa-link" aria-hidden="true"></i></a><br>
-                    <a href="https://github.com/dotnet/tye/blob/main/docs/reference/schema.md#example">More about tye.yaml scheme. <i class="fa fa-external-link" aria-hidden="true"></i></a></p>
-
-                <br>
-                <br>
-                <div id="readme" class="embed">
-                    <!--object data="README.html" type="text/html"></object-->
-                    {{ embed | safe}}
-                </div>
-                <br><br><br>
-            </div>
-        </div>    
-
-        <footer class="navigation foot footer">
-            <h2 class="text-center">
-                <a href="https://github.com/Darex20">My Github Page <i class="fa fa-github fa-4"></i></a></h2>
-        </footer>
-        
-    </div>
+{% block content %}
     
-    <script src="/static/js/about.js"></script>
+    <div class="centered-about">
+        <br><br>
+        <h1>About the project <a href="https://github.com/Darex20"><img id="github-icon" src="https://avatars.githubusercontent.com/u/79168824?v=4" alt="Could not load github icon"></a></h1>
+        
+        <br>
+        <p>This is a simple project made for easier tye.yaml file generation. <br>
+            <a href="https://github.com/Darex20/TyeGenerator">This projects github source code. <i class="fa fa-link" aria-hidden="true"></i></a><br>
+            <a href="https://github.com/dotnet/tye/blob/main/docs/reference/schema.md#example">More about tye.yaml scheme. <i class="fa fa-external-link" aria-hidden="true"></i></a></p>
 
-</body>
-</html>
+        <br>
+        <br>
+        <div id="readme" class="embed">
+            {{ embed | safe}}
+        </div>
+        <br><br><br>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script src="{{ url_for('static',filename='js/about.js') }}"></script>
+{% endblock %}

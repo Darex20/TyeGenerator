@@ -22,14 +22,12 @@ services=db[collection_name]
 @app.route("/", methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        return flask.render_template('select.html', value=request.form.getlist('services'))
-    
-    services = db.services.find()
-    return flask.render_template('index.html', services=services)
+        return flask.render_template('select.html', services=request.form.getlist('services'))
+    services = db.services.find({})
+    return flask.render_template('index.html', services=services.rewind())
 
 @app.route('/about')
 def about():
-    # static file from project root
     with open('README.md', 'r') as f:
         text = f.read()
         html = markdown.markdown(text)
@@ -39,21 +37,19 @@ def about():
 def select():
     services = db.services.find()
     dict = {}
-    for service in services:
-        print(service)
+    for service in services.rewind():
         currentDataDict = {}
         for field in service:
-            print(field)
             value = service[field]
             value = request.form.get(value)
             if(value != None and value != ""):
                 currentDataDict[field] = value
         if currentDataDict != {}:
-            dict[service["service"]] = currentDataDict
-            print(currentDataDict)
+            dict[service["rootName"]] = currentDataDict
     
     configName = request.form.get("configname")
     outputFile = "name: " + configName + "\n" + "services:"
+    print(dict)
     
     for key in dict:
         check = True
@@ -68,12 +64,7 @@ def select():
             else:
                 outputFile = outputFile + "\n  " + value + ": " + dict[key][value]
 
-    print(outputFile)
     html = "<p>" + outputFile.replace("\n", "<br>") + "</p>"
 
-    # str = request.form.get("devicesname") + request.form.get("devicesproject") + request.form.get("devicesimage")
     return flask.render_template('preview.html', outputFile=outputFile, configName=configName, html=html, valueDict=dict)
 
-
-"""@app.route('/preview', methods=['GET', 'POST'])
-def preview():"""

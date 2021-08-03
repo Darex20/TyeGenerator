@@ -185,12 +185,12 @@ label {
     top: 5rem;
 }
 
-.right-button{
+.right-side{
     float: right;
-    width: 10em;
+    width: 12em;
 }
 
-.left-button{
+.left-side{
     float: left;
     width: 6em;
 }
@@ -225,14 +225,14 @@ label {
     left: 10rem;
   }
 
-  #preview-button{
-    width: 10rem;
-    float: right;
-}
-
-  #generate-button{
-      float: right;
+  .centered-preview{
+    position: relative; 
+    height: fit-content;
+    top: 0;
+    left: 10rem;
+    width: 20%;
   }
+
 
   #github-icon{
       border-radius: 50%;
@@ -247,15 +247,6 @@ label {
       font-size: 20px;
   }
 
-  #configname-label{
-      float: right;
-  }
-
-  #configname{
-      float: left;
-  }
-
-
   mark.red {
     color:#ff0000;
     background: none;
@@ -263,4 +254,8 @@ label {
 
  #preview{
     white-space: pre-wrap;
+ }
+
+ .hidden{
+    display: none;
  }
