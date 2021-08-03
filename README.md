@@ -6,7 +6,7 @@
    * Layout for every html is now extended from base.html.  
    * Removed unnecessary id selectors.  
    * Most of content is now dynamically loaded from mongodb.  
-   * Fixed back button in preview.
+   * Fixed 'Back' button in preview.
 
 ### v0.3.3
    * Added mongoDB database to the project that now holds services.  
