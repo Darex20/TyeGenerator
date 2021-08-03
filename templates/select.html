@@ -22,7 +22,7 @@
                 <div id="{{ elem }}" class="tabcontent">
                     <br><br><br>
                     <ul>
-                        <label for="cname">Name <mark class="red">(required)</mark></label>
+                        <label for="cname">Name<mark class="red">(required)</mark></label>
                         <input type="text" id="{{ elem ~ '_name'}}" name="{{ elem ~ '_name'}}" required>
                     </ul>
                     <ul>
@@ -46,17 +46,20 @@
             {% endfor %}
 
             <br><br>
-            <label for="configname" id="configname" >Configuration name <mark class="red">(required)</mark></label>
+            <label for="configname" id="configname" >Configuration name<mark class="red">(required)</mark></label>
             <input type="text" name="configname" class="right-side" required>
             
             <br><br><br>
 
-            <div>
-                <a href="{{ url_for('index')}}"><button class="btn btn-dark left-side">Back</a></button>
-                <div class="text-center">
-                    <input type="submit" value="Show Preview" class="btn btn-dark right-side">
+            <a href="{{ url_for('index') }}">
+                <div class="btn btn-dark left-side">
+                    Back
                 </div>
+            </a>
+            <div class="text-center">
+                <input type="submit" value="Show Preview" class="btn btn-dark right-side">
             </div>
+
         </form>
     </div>
 

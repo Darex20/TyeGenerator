@@ -49,7 +49,6 @@ def select():
     
     configName = request.form.get("configname")
     outputFile = "name: " + configName + "\n" + "services:"
-    print(dict)
     
     for key in dict:
         check = True

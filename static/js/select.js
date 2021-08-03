@@ -9,6 +9,9 @@ $(document).ready(function () {
 
 });
 
+function goBack(){
+  history.back();
+}
 
 function openTab(evt, tabName) {
     // Declare all variables
