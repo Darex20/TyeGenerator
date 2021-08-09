@@ -1,13 +1,3 @@
-$(document).ready(function () {
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-    });
-});
-
-function goBack(){
-    history.back();
-}
-
 
 function download(filename) {
     var text = document.getElementById("output").textContent.trim()

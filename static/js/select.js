@@ -1,18 +1,6 @@
 
 document.getElementById("defaultOpen").click();
 
-$(document).ready(function () {
-
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-    });
-
-});
-
-function goBack(){
-  history.back();
-}
-
 function openTab(evt, tabName) {
     // Declare all variables
     var i, tabcontent, tablinks;

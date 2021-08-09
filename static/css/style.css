@@ -136,7 +136,7 @@ ul ul a {
 }
 
 label {
-    display: inline-block;
+    display: inline;
     width: 140px;
     text-align: left;
 }​
@@ -174,7 +174,7 @@ label {
   
   /* Style the tab content */
   .tabcontent {
-    display: none;
+    
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
@@ -223,6 +223,7 @@ label {
     height:fit-content;
     top: 0;
     left: 10rem;
+    width: auto;
   }
 
   .centered-preview{

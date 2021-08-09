@@ -3,7 +3,7 @@
 
 {% block content %}
 
-    <div class="centered">
+    <div class="centered-about">
             <br><br>
             <div class="tab">
                 {% set check = 'true' %}
@@ -18,37 +18,56 @@
             </div>
 
         <form action="{{ url_for('select')}}" method="POST">
-            {% for elem in services %}
-                <div id="{{ elem }}" class="tabcontent">
+            {% for service in services %}
+                <div id="{{ service }}" class="tabcontent">
                     <br><br><br>
-                    <ul>
-                        <label for="cname">Name<mark class="red">(required)</mark></label>
-                        <input type="text" id="{{ elem ~ '_name'}}" name="{{ elem ~ '_name'}}" required>
-                    </ul>
-                    <ul>
-                        <label for="cname">Project</label>
-                        <input type="text" id="{{ elem ~ '_project'}}" name="{{ elem ~ '_project'}}">
-                    </ul>
-                    <ul>
-                        <label for="cname">Image</label>
-                        <input type="text" id="{{ elem ~ '_image' }}" name="{{ elem ~ '_image'}}">
-                    </ul>
-                    <ul>
-                        <label for="cname">Port</label>
-                        <input type="text" id="{{ elem ~ '_port' }}" name="{{ elem ~ '_port'}}">
-                    </ul>
-                    <ul>
-                        <label for="cname">Protocol</label>
-                        <input type="text" id="{{ elem ~ '_protocol' }}" name="{{ elem ~ '_protocol' }}">
-                    </ul>
-
+                    
+                    <h4> Services </h4>
+                    {% for key, value in properties.items() %}
+                        {% if key == "name" %}
+                            <ul>
+                                <label for="cname"><nobr>{{ key }}  ({{ value }}) <mark class="red">(required)</mark></nobr></label>  
+                                <input type="text" id="{{ service ~ '_' ~ key }}" name="{{ service ~ '_' ~ key }}" required>
+                            </ul>
+                        {% elif value == "String" or value == "String[]" %}
+                            <ul>
+                                <label for="cname"><nobr>{{ key }} ({{ value }})</nobr></label>  
+                                <input type="text" id="{{ service ~ '_' ~ key }}" name="{{ service ~ '_' ~ key }}">
+                            </ul>
+                        {% elif value == "bool" %}
+                            <ul>
+                                <label for="cname"><nobr>{{ key }} ({{ value }})</nobr></label>  
+                                <input type="checkbox" id="{{ service ~ '_' ~ key }}" name="{{ service ~ '_' ~ key }}">
+                            </ul>
+                        {% elif value == "int" %}
+                            <ul>
+                                <label for="cname"><nobr>{{ key }} ({{ value }})</nobr></label>  
+                                <input type="number" id="{{ service ~ '_' ~ key }}" name="{{ service ~ '_' ~ key }}">
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             {% endfor %}
-
-            <br><br>
-            <label for="configname" id="configname" >Configuration name<mark class="red">(required)</mark></label>
-            <input type="text" name="configname" class="right-side" required>
-            
+            <br>
+            <p style="font-size: small;"> (Type String[] should be written using ';' delimiter (e.g. SOME_KEY=SOME_VALUE;SOME_KEY2="SOME VALUE";SOME_KEY3)  </p>
+            <br>
+            <h4> Root Properties </h4>
+            <br>
+                <div>
+                    {% for key, value in rootProperties.items() %}
+                        {% if key == "name" %}
+                            <ul>
+                                <label for="name" id="name" >Configuration name<mark class="red">(required)</mark></label>
+                                <input type="text" name="name"  required>
+                            </ul>
+                        {% else %}
+                            <ul>
+                                <label for="cname"><nobr>{{ key }}  ({{ value }})</nobr></label>  
+                                <input type="text" id="{{ key }}" name="{{ key }}">
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                </div>
             <br><br><br>
 
             <a href="{{ url_for('index') }}">
@@ -61,6 +80,7 @@
             </div>
 
         </form>
+        <br><br><br>
     </div>
 
 {% endblock %}

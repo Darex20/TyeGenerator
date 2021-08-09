@@ -1,15 +1,8 @@
-$(document).ready(function () {
-
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-    });
-
-    $("form").submit(function(){
-        if ($('input:checkbox').filter(':checked').length < 1){
-               alert("Please Check at least one service");
-        return false;
-        }
-    });
+$("form").submit(function(){
+    if ($('input:checkbox').filter(':checked').length < 1){
+           alert("Please Check at least one service");
+    return false;
+    }
 });
 
 function download(filename, text) {

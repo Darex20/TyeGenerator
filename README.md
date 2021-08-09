@@ -1,6 +1,10 @@
 # TyeGenerator
  Simple web app that generates tye file.  
  
+### v0.4.1
+   * Added more properties.  
+   * Added common.js.  
+
 ## v0.4.0
    * Added base.html.    
    * Layout for every html is now extended from base.html.  
