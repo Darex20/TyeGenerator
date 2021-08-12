@@ -6,8 +6,9 @@
 .centered{
     position: relative; 
     height:fit-content;
-    top: 5rem;
-    left: 10rem;
+    top: 0;
+    margin: auto;
+    width: auto;
 }
 
 .wrapper {
@@ -118,7 +119,7 @@ ul ul a {
     color: white;
 }
 
-.form-container-button{
+.form-container{
     width: 25em;
 }
 
@@ -218,14 +219,6 @@ label {
     min-height: 100%;
   }  
 
-  .centered-about{
-    position: relative; 
-    height:fit-content;
-    top: 0;
-    left: 10rem;
-    width: auto;
-  }
-
   .centered-preview{
     position: relative; 
     height: fit-content;
@@ -259,4 +252,20 @@ label {
 
  .hidden{
     display: none;
+ }
+
+ .gif{
+    width: auto;
+    position: relative;
+    max-width: 100%;
+    padding:5%;
+ }
+
+ .service-table{
+    position: relative; 
+    height:fit-content;
+    top: 7rem;
+    left: 20rem;
+    width: auto;
+    font-size: 30px;
  }

@@ -1,5 +1,4 @@
 from flask import Flask, request
-from flask_wtf import FlaskForm
 import flask
 import markdown
 import json
@@ -19,34 +18,16 @@ db=client[database_name]
 collection_name="services"
 services=db[collection_name]
 
-properties = {
-        "name": "String",
-        "image": "String", 
-        "env": "String[]", 
-        "project": "String", 
-        "dockerFile": "String",
-        "dockerFileArgs": "String[]",
-        "dockerFileContext": "String",
-        "executable": "String",
-        "external": "bool",
-        "replicas": "int",
-        "env_file": "String[]",
-        "args": "String",
-        "build": "bool",
-        "workingDirectory": "String",
-        "include": "String",
-        "repository": "String",
-        "cloneDirectory": "String",
-        "azureFunctions": "String",
-        "pathToFunc": "String"
-}
+collection_name="properties"
+propertyCollection=db[collection_name]
 
-rootProperties = {
-    "name": "String",
-    "registry": "String",
-    "namespace": "String",
-    "network": "String",
-}
+properties = {}
+rootProperties = {}
+for property in db.properties.find():
+    if property["category"] == "root_property":
+        rootProperties[property["name"]] = property["type"]
+    elif property["category"] == "service_property":
+        properties[property["name"]] = property["type"]
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -56,6 +37,22 @@ def index():
 
     services = db.services.find({})
     return flask.render_template('index.html', services=services.rewind())
+
+@app.route('/project')
+def project():
+    list = []
+    for service in db.services.find().rewind():
+        if service["type"] == "project":
+            list.append(service)
+    return flask.render_template('project.html', services=list)
+
+@app.route('/commercial')
+def commercial():
+    list = []
+    for service in db.services.find().rewind():
+        if service["type"] == "commercial":
+            list.append(service)
+    return flask.render_template('commercial.html', services=list)
 
 @app.route('/about')
 def about():
@@ -72,7 +69,6 @@ def select():
     outputFile = ""
     for service in services.rewind():
         currentDataDict = {}
-        print(service)
         for property in properties:
             value = service["rootName"] + "_" + property
             value = request.form.get(value)
@@ -91,7 +87,6 @@ def select():
     for key in dict:
         check = True
         for value in dict[key]:
-            print(properties[value])
             if value == "name":
                 outputFile = outputFile + "\n- " + value + ": " + dict[key][value]
             elif "[]" in properties[value]:
@@ -99,22 +94,15 @@ def select():
                 outputFile = outputFile + "\n  " + value + ": "
                 for property in subProperties:
                     outputFile = outputFile + "\n  - " + property
-                # outputFile = outputFile + "\n- " + value + ": " + dict[key][value]
             elif "bool" == properties[value]:
                 outputFile = outputFile + "\n  " + value + ": " + "true"
-
             else:
                 outputFile = outputFile + "\n  " + value + ": " + dict[key][value]
 
-            """elif (value == "port" or value == "protocol") and check:
-                outputFile = outputFile + "\n  bindings:\n  - " + value + ": " + dict[key][value]
-                check = False    
-            elif not check and value == "protocol":
-                outputFile =  outputFile + "\n    " + value + ": " + dict[key][value]
-            else:
-                outputFile = outputFile + "\n  " + value + ": " + dict[key][value]"""
 
     html = "<p>" + outputFile.replace("\n", "<br>") + "</p>"
 
     return flask.render_template('preview.html', outputFile=outputFile, configName=request.form.get("name"), html=html, valueDict=dict)
+
+
 

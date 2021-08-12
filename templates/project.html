@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% set active_item = 'project' %}
+
+{% block content %}
+
+    <div class="service-table">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Display Name</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for service in services %}
+                    <tr>
+                        <th scope="row">{{ loop.index }}</th>
+                        <td>{{ service.get("displayName") }}</td>
+                    </tr>
+                {% endfor %}
+                <tr class="form-container">
+                    <a href="">
+                        <th scope="row"><i class="fa fa-plus-square" aria-hidden="true"></i></th>
+                        <td><b>Add a service</b></td>
+                    </a>
+                </tr>
+                    
+            </tbody>
+          </table>
+    </div>
+
+{% endblock %}
+

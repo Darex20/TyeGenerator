@@ -1,6 +1,11 @@
 # TyeGenerator
  Simple web app that generates tye file.  
  
+### v0.4.2
+   * Added project and commercial services tabs.
+   * Updated style.css.
+   * Hardcoded properties are now in database.
+
 ### v0.4.1
    * Added more properties.  
    * Added common.js.  

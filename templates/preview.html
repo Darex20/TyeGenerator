@@ -17,14 +17,14 @@
                 {{ outputFile | safe }}
             </div>
 
-            <button class="btn btn-dark left-side" onclick="goBack()">Back</button>
-            <button onclick="download('{{ configName }}')" type="button" class="btn btn-dark right-side"><nobr>
-                <i class="fa fa-download" aria-hidden="true"></i> Generate my file.</nobr></button>
+            <div>
+                <button class="btn btn-dark left-side" onclick="goBack()">Back</button>
+                <button onclick="download('{{ configName }}')" type="button" class="btn btn-dark right-side"><nobr>
+                    <i class="fa fa-download" aria-hidden="true"></i> Generate my file.</nobr></button>
+            </div>
             <br><br><br>
     </div>
     
-    
-
 {% endblock %}
 
 {% block javascript %}

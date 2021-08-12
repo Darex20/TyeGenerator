@@ -32,6 +32,12 @@
                 <li class="{% if active_item == 'index' %}active{% endif %}">
                     <a href="{{ url_for('index')}}" data-toggle="collapse" aria-expanded="false"><i class="fa fa-file" aria-hidden="true"></i>  Generate Tye File </a>
                 </li>
+                <li class="{% if active_item == 'project' %}active{% endif %}">
+                    <a href="{{ url_for('project')}}"><i class="fa fa-list" aria-hidden="true"></i> Project services</a>
+                </li>
+                <li class="{% if active_item == 'commercial' %}active{% endif %}">
+                    <a href="{{ url_for('commercial')}}"><i class="fa fa-list" aria-hidden="true"></i>  Commercial services</a>
+                </li>
                 <li class="{% if active_item == 'about' %}active{% endif %}">
                     <a href="{{ url_for('about')}}"> <i class="fa fa-info-circle" aria-hidden="true"></i>  About</a>
                 </li>

@@ -3,7 +3,7 @@
 
 {% block content %}
 
-    <div class="centered-about">
+    <div class="centered">
             <br><br>
             <div class="tab">
                 {% set check = 'true' %}
@@ -18,6 +18,7 @@
             </div>
 
         <form action="{{ url_for('select')}}" method="POST">
+
             {% for service in services %}
                 <div id="{{ service }}" class="tabcontent">
                     <br><br><br>
@@ -48,17 +49,20 @@
                     {% endfor %}
                 </div>
             {% endfor %}
+
             <br>
             <p style="font-size: small;"> (Type String[] should be written using ';' delimiter (e.g. SOME_KEY=SOME_VALUE;SOME_KEY2="SOME VALUE";SOME_KEY3)  </p>
             <br>
-            <h4> Root Properties </h4>
-            <br>
+
+            <div class="embed">
+                <h4> Root Properties </h4>
+                <br>
                 <div>
                     {% for key, value in rootProperties.items() %}
                         {% if key == "name" %}
                             <ul>
                                 <label for="name" id="name" >Configuration name<mark class="red">(required)</mark></label>
-                                <input type="text" name="name"  required>
+                                <input type="text" name="name"  required>                                
                             </ul>
                         {% else %}
                             <ul>
@@ -68,19 +72,17 @@
                         {% endif %}
                     {% endfor %}
                 </div>
+            </div>
             <br><br><br>
 
-            <a href="{{ url_for('index') }}">
-                <div class="btn btn-dark left-side">
-                    Back
-                </div>
-            </a>
-            <div class="text-center">
-                <input type="submit" value="Show Preview" class="btn btn-dark right-side">
+            <div>
+                <a href="{{ url_for('index') }}" class="btn btn-dark left-side">Back</a>
+                <button type="submit" class="btn btn-dark right-side">Show Preview <i class="fa fa-file-text-o" aria-hidden="true"></i></button>
             </div>
 
         </form>
         <br><br><br>
+
     </div>
 
 {% endblock %}
