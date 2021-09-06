@@ -115,7 +115,7 @@ def select():
     for service in dict:
         for tuple in dict[service]:
             print(dict[service][tuple])
-            if dict[service][tuple][0] == "name":
+            if tuple == "name":
                 outputFile = outputFile + "\n- " + tuple + ": " + dict[service][tuple][0]
             elif "[]" in dict[service][tuple][1]:
                 subProperties = dict[service][tuple][0].split(";")
