@@ -1,4 +1,33 @@
 {
     "SECRET_KEY": "DZ?gx3|:A^#}IRn$)JTt>qKfnk4>fn",
-    "connection_url": "mongodb://localhost:27017/"
+    "connection_url": "mongodb://localhost:27017/",
+    "database_name": "my_database",
+    "collection_name": "services",
+    "root_properties": {
+        "name": "String",
+        "registry": "String",
+        "namespace": "String",
+        "network": "String"
+    },
+    "service_properties": {
+        "name": "String",
+        "image": "String",
+        "env": "String[]",
+        "project": "String",
+        "dockerFile": "String",
+        "dockerFileArgs": "String[]",
+        "dockerFileContext": "String",
+        "executable": "String",
+        "external": "bool",
+        "replicas": "int",
+        "env_file": "String[]",
+        "args": "String",
+        "build": "bool",
+        "workingDirectory": "String",
+        "include": "String",
+        "repository": "String",
+        "cloneDirectory": "String",
+        "azureFunctions": "String",
+        "pathToFunc": "String"
+    }
 }

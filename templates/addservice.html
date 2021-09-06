@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% set active_item = type %}
+
+{% block content %}
+
+    <div class="centered">
+        <br>
+        <h1 class="text-center">Add {{ type }} service.</h1>
+        <br>
+        <div class="embed">
+            <form action="{{ url_for('addservice') }}" method="POST" name="form" id="form">
+                <br>
+                {% for property in properties %}
+                    {% if property == "name" %}
+                        <ul>
+                            <nobr>
+                                <label class="form-check-label" for="flexCheckDefault" >{{ property }} ({{ properties[property] }})<mark class="red">(required)</mark></label>
+                                <input style="display: none" class="form-check-input" type="checkbox" value="{{ property }}" name="properties" checked>
+                                <input id="{{ property }}" name="{{ property }}" type="text">
+                            </nobr>
+                        </ul>
+                    {% else %}
+                        <ul>
+                            <nobr>
+                                <label class="form-check-label" for="flexCheckDefault" >{{ property }} ({{ properties[property] }})</label>
+                                <input class="form-check-input" type="checkbox" value="{{ property }}" name="properties" onclick="showInput('{{ property }}')">
+                                <input style="display:none" id="{{ property }}" name="{{ property }}" type="text" placeholder="Default value">
+                            </nobr>
+                        </ul>
+                    {% endif %}
+                {% endfor %}
+                <p style="font-size: small;"> (Type String[] should be written using ';' delimiter (e.g. SOME_KEY=SOME_VALUE;SOME_KEY2="SOME VALUE";SOME_KEY3)  </p>
+                <br>
+                <ul>
+                    <nobr>
+                        <label for="sname">Service name <mark class="red">(required)</mark></label>  
+                        <input type="text" id="service_name" name="service_name" required>
+                        <button type="submit" id="btnSubmit" name="add_service" value="{{ type }}" onclick="return checkDuplicate()" class="btn btn-dark">Add Service <i class="fa fa-plus" aria-hidden="true"></i></button>
+                    </nobr>
+                </ul>
+            </form>
+        </div>
+        <div id="services" style="display: none;">
+            {{ services | safe }}
+        </div>
+        <br>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script src="{{ url_for('static',filename='js/addservice.js') }}"></script>
+{% endblock %}

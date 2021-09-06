@@ -35,9 +35,6 @@ h1, h2, h3, h4, h5, h6{
     margin-bottom: 0;
 }
 
-
-/* -------------------------------- */
-
 body {
     font-family: 'Andale Mono', monospace;
     background: #e4f2f2;
@@ -142,9 +139,6 @@ label {
     text-align: left;
 }​
 
-
-/* select.html site */
-
 /* Style the tab */
 .tab {
     overflow: hidden;
@@ -152,7 +146,7 @@ label {
     background-color: #f1f1f1;
 }
   
-  /* Style the buttons that are used to open the tab content */
+/* Style the buttons that are used to open the tab content */
 .tab button {
     background-color: inherit;
     float: left;
@@ -163,26 +157,25 @@ label {
     transition: 0.3s;
 }
   
-  /* Change background color of buttons on hover */
+/* Change background color of buttons on hover */
 .tab button:hover {
     background-color: #ddd;
 }
   
-  /* Create an active/current tablink class */
-  .tab button.active {
+/* Create an active/current tablink class */
+.tab button.active {
     background-color: #8F9494;
-  }
+}
   
-  /* Style the tab content */
-  .tabcontent {
-    
+/* Style the tab content */
+.tabcontent {  
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
     background-color: #D3D3D3;
-  }
+}
 
-  .tabs{
+.tabs{
     top: 5rem;
 }
 
@@ -212,60 +205,68 @@ label {
     bottom: 0;
     width: 100%;
     display:inline block;
-  }
+}
  
-  .page-container {
+.page-container {
     position: relative;
     min-height: 100%;
-  }  
+}  
 
-  .centered-preview{
+.centered-preview{
     position: relative; 
     height: fit-content;
     top: 0;
     left: 10rem;
     width: 20%;
-  }
+}
 
+#github-icon{
+    border-radius: 50%;
+    width: 115px;
+}
 
-  #github-icon{
-      border-radius: 50%;
-      width: 115px;
-  }
-
-  #github-icon:hover{
+#github-icon:hover{
     box-shadow: 0 0 2px 1px black;
-  }
+}
 
-  .generate-text{
-      font-size: 20px;
-  }
+.generate-text{
+    font-size: 20px;
+}
 
-  mark.red {
+mark.red {
     color:#ff0000;
     background: none;
 }
 
- #preview{
+#preview{
     white-space: pre-wrap;
- }
+}
 
- .hidden{
+.hidden{
     display: none;
- }
+}
 
- .gif{
+.gif{
     width: auto;
     position: relative;
     max-width: 100%;
     padding:5%;
- }
+}
 
- .service-table{
+.service-table{
     position: relative; 
     height:fit-content;
-    top: 7rem;
-    left: 20rem;
+    margin: auto;
+    margin-top: 7rem;
     width: auto;
     font-size: 30px;
- }
+}
+
+.service-table button{
+    background-color: inherit;
+    border-style: none;
+}
+
+.embed ul{
+    padding-right: 2rem;
+}

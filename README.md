@@ -1,6 +1,10 @@
 # TyeGenerator
- Simple web app that generates tye file.  
+
+## Simple web app that generates tye file.  
  
+# v1.0.0
+   * Major Release.  
+
 ### v0.4.2
    * Added project and commercial services tabs.
    * Updated style.css.

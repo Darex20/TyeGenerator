@@ -3,6 +3,7 @@ import flask
 import markdown
 import json
 import pymongo
+from bson.objectid import ObjectId
 
 app = Flask(__name__)
 
@@ -12,46 +13,73 @@ with open('./config.json') as f:
 app.config.update(config)
 client = pymongo.MongoClient(config["connection_url"])
 
-database_name="tye_generator"
+database_name = config["database_name"]
 db=client[database_name]
 
-collection_name="services"
+collection_name = config["collection_name"]
 services=db[collection_name]
 
-collection_name="properties"
-propertyCollection=db[collection_name]
+rootProperties = config["root_properties"]
 
-properties = {}
-rootProperties = {}
-for property in db.properties.find():
-    if property["category"] == "root_property":
-        rootProperties[property["name"]] = property["type"]
-    elif property["category"] == "service_property":
-        properties[property["name"]] = property["type"]
+def typeList(type):
+    list = []
+    for service in db.services.find().rewind():
+        if service["type"] == type:
+            list.append(service)
+    return list
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        
-        return flask.render_template('select.html', services=request.form.getlist('services'), properties=properties, rootProperties=rootProperties)
+        localServices = []
+        for service in db.services.find({}):
+            if service["rootName"] in request.form.getlist('services'):
+                localServices.append(service) 
+        return flask.render_template('select.html', services=localServices, rootProperties=rootProperties)
 
-    services = db.services.find({})
+    services=db.services.find({})
     return flask.render_template('index.html', services=services.rewind())
 
-@app.route('/project')
+@app.route('/addservice', methods=['GET', 'POST'])
+def addservice():
+    properties = config["service_properties"]
+    if request.method == 'POST':
+        print(request.form)
+        type = request.form.get("add_service")
+        print(type)
+        service_name = request.form.get("service_name")
+        root_name = service_name.strip().lower().replace(" ", "_")
+        service = {}
+        json_properties = {}
+        form_properties = request.form.getlist('properties')
+        for property in properties:
+            if property in form_properties:
+                json_property = {"type": properties[property], "value": request.form.get(property)}
+                json_properties[property] = json_property
+        service = {"displayName": service_name, "rootName": root_name, "type": type, "properties": json_properties}
+        services.insert_one(service)
+        return flask.render_template(f'{type}.html', services=typeList(type))
+    else:
+        type = flask.request.args.get("add_service")
+        add_services = []
+        for service in typeList(type):
+            add_services.append(service["displayName"])
+        return flask.render_template('addservice.html', type=type, properties=properties, services=add_services)
+
+@app.route('/project', methods=['GET', 'POST'])
 def project():
-    list = []
-    for service in db.services.find().rewind():
-        if service["type"] == "project":
-            list.append(service)
+    if request.method == 'POST':
+        _id = request.form.get("clicked_button")
+        result = db.services.delete_one({"_id": ObjectId(_id)})
+    list = typeList('project')
     return flask.render_template('project.html', services=list)
 
-@app.route('/commercial')
+@app.route('/commercial', methods=['GET', 'POST'])
 def commercial():
-    list = []
-    for service in db.services.find().rewind():
-        if service["type"] == "commercial":
-            list.append(service)
+    if request.method == 'POST':
+        _id = request.form.get("clicked_button")
+        result = db.services.delete_one({"_id": ObjectId(_id)})
+    list = typeList('commercial')
     return flask.render_template('commercial.html', services=list)
 
 @app.route('/about')
@@ -69,11 +97,11 @@ def select():
     outputFile = ""
     for service in services.rewind():
         currentDataDict = {}
-        for property in properties:
+        for property in service["properties"]:
             value = service["rootName"] + "_" + property
             value = request.form.get(value)
             if(value != None and value != ""):
-                currentDataDict[property] = value
+                currentDataDict[property] = [value, service["properties"][property]]
         if currentDataDict != {}:
             dict[service["rootName"]] = currentDataDict
     
@@ -84,20 +112,20 @@ def select():
 
     outputFile = outputFile + "services:"
     
-    for key in dict:
-        check = True
-        for value in dict[key]:
-            if value == "name":
-                outputFile = outputFile + "\n- " + value + ": " + dict[key][value]
-            elif "[]" in properties[value]:
-                subProperties = dict[key][value].split(";")
-                outputFile = outputFile + "\n  " + value + ": "
+    for service in dict:
+        for tuple in dict[service]:
+            print(dict[service][tuple])
+            if dict[service][tuple][0] == "name":
+                outputFile = outputFile + "\n- " + tuple + ": " + dict[service][tuple][0]
+            elif "[]" in dict[service][tuple][1]:
+                subProperties = dict[service][tuple][0].split(";")
+                outputFile = outputFile + "\n  " + tuple + ": "
                 for property in subProperties:
                     outputFile = outputFile + "\n  - " + property
-            elif "bool" == properties[value]:
-                outputFile = outputFile + "\n  " + value + ": " + "true"
+            elif "bool" == dict[service][tuple][1]:
+                outputFile = outputFile + "\n  " + dict[service][tuple][0] + ": " + "true"
             else:
-                outputFile = outputFile + "\n  " + value + ": " + dict[key][value]
+                outputFile = outputFile + "\n  " + tuple + ": " + dict[service][tuple][0]
 
 
     html = "<p>" + outputFile.replace("\n", "<br>") + "</p>"
