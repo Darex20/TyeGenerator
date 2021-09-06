@@ -44,9 +44,7 @@ def index():
 def addservice():
     properties = config["service_properties"]
     if request.method == 'POST':
-        print(request.form)
         type = request.form.get("add_service")
-        print(type)
         service_name = request.form.get("service_name")
         root_name = service_name.strip().lower().replace(" ", "_")
         service = {}
@@ -91,7 +89,6 @@ def about():
 
 @app.route('/select', methods=['GET', 'POST'])
 def select():
-    
     services = db.services.find()
     dict = {}
     outputFile = ""
@@ -114,7 +111,6 @@ def select():
     
     for service in dict:
         for tuple in dict[service]:
-            print(dict[service][tuple])
             if tuple == "name":
                 outputFile = outputFile + "\n- " + tuple + ": " + dict[service][tuple][0]
             elif "[]" in dict[service][tuple][1]:
