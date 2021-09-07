@@ -10,6 +10,9 @@
         <div class="embed">
             <form action="{{ url_for('addservice') }}" method="POST" name="form" id="form">
                 <br>
+                <p>Check the box if you want to add a certain property, <br>
+                    then you can assign a default value to it. <br>
+                    (if nothing is written in the input field, then there will be no default value)</p>
                 {% for property in properties %}
                     {% if property == "name" %}
                         <ul>
